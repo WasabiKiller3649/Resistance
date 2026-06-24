@@ -1,0 +1,7 @@
+using UnityEngine;
+
+public interface ISkillEffectValueGettable
+{
+    //ƒXƒLƒ‹‚ÌŒø‰Ê’l‚ð•Ô‹p
+    public float GetEffectValue();
+}
