@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerSoundController : MonoBehaviour
 {
     [SerializeField]
-    private PlayerController _playerController;
+    private OldPlayerController _playerController;
     [SerializeField]
     private AudioSource _audioSource;
     [SerializeField]

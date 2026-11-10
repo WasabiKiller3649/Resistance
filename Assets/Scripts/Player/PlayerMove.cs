@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     //ˆÚ“®‚·‚é‚±‚Æ‚ğ’m‚ç‚¹‚éæ
     [SerializeField]
-    private PlayerController _playerController;
+    private OldPlayerController _playerController;
     //ˆÚ“®‘¬“x
     [SerializeField]
     private float _moveSpeed;

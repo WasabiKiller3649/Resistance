@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.facadethelibrarian.xqlua": {
+      "version": "https://github.com/FacadeTheLibrarian/XqLua.git?path=/Assets/XqLua",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0771e5dc0837e9cabd3fe017f7a23e3ba8813c81"
+    },
     "com.unity.2d.animation": {
       "version": "13.0.4",
       "depth": 1,

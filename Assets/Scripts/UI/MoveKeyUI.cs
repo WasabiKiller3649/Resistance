@@ -17,7 +17,7 @@ public class MoveKeyUI : MonoBehaviour
     [SerializeField] private Image[] _keyBackImages = default;
 
     [Header("Player")]
-    [SerializeField] private PlayerController _player = default;
+    [SerializeField] private OldPlayerController _player = default;
     private float _unMoveTime = default;
     private Vector2 _playerSpeed = default;
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
-public class PlayerController : MonoBehaviour
+
+public class OldPlayerController : MonoBehaviour
 {
     //Rigidbody‚ğ‘€ì‚·‚é
     [SerializeField]
