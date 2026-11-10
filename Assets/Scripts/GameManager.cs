@@ -21,6 +21,13 @@ public class GameManager : MonoBehaviour
 
     //ゲームクリアイベント
     public event Action OnLastBossDead;
+
+    private bool _wasCleared = false;
+    public bool WasCleared
+    {
+        get { return _wasCleared; }
+    }
+
     public enum StagePhase
     {
         Initial,
@@ -32,11 +39,13 @@ public class GameManager : MonoBehaviour
     }
     //ゲームのフェーズ
     private StagePhase stagePhase;
+
     private void Awake()
     {
         //フェーズの初期化
         stagePhase = StagePhase.Initial;
     }
+
     private void OnEnable()
     {
         _lastBossController.OnDeath += OnGameClear;
@@ -70,6 +79,7 @@ public class GameManager : MonoBehaviour
     private void OnGameClear()
     {
         OnLastBossDead?.Invoke();
+        _wasCleared = true;
     }
     public void SetStagePhase(StagePhase phase)
     {

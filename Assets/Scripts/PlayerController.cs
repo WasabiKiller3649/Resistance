@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     //Rigidbody‚ğ‘€ì‚·‚é
     [SerializeField]
-    private PhisicsController _phisicsController;
+    private PhysicsController _phisicsController;
 
     private Vector2 _moveSpeed = default;
     public Vector2 MoveSpeed

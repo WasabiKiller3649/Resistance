@@ -15,7 +15,6 @@ public class BoneBulletGenerator : MonoBehaviour, IPoolConfig
     //çúíePoolÇÃëÂÇ´Ç≥
     private uint _boneBulletPoolSize = default;
 
-    //
     [SerializeField]
     private BoneArcherGenerator _boneArcherGenerator;
 
@@ -36,7 +35,7 @@ public class BoneBulletGenerator : MonoBehaviour, IPoolConfig
     private readonly Vector3 _bulletPositionDown = new Vector3(0, -0.5f, 0);
     private readonly Vector3 _bulletPositionRight = new Vector3(0.5f, 0, 0);
     private readonly Vector3 _bulletPositionLeft = new Vector3(-0.5f, 0, 0);
-    //
+
     private WaitForSeconds _waitForShot = default;
     private void Awake()
     {

@@ -45,7 +45,7 @@ public class BoneArcherController : MonoBehaviour
 
     //Rigidbody‚ğG‚é
     [SerializeField]
-    private PhisicsController _phisicsController;
+    private PhysicsController _physicsController;
 
     //Destroy
     [SerializeField]
@@ -59,7 +59,7 @@ public class BoneArcherController : MonoBehaviour
         _directionChange.SetMoveVector(_moveSpeed);
 
         //•Ç‚É“–‚½‚Á‚½”½Ë‚·‚é
-        _phisicsController.OnReflection += Reflection;
+        _physicsController.OnReflection += Reflection;
 
         //ˆÚ“®•ûŒü‚Ì‰Šú‰»
         _direction = OnRequestDirection(_direction);
@@ -72,7 +72,7 @@ public class BoneArcherController : MonoBehaviour
         switch (_state)
         {
             case MoveState.Move:
-                _phisicsController.Stop();
+                _physicsController.Stop();
                 //State•Ï‚¦
                 _state = MoveState.DirectionChange;
                 StartCoroutine(ChangeState(_directionChangeTime));
@@ -82,7 +82,7 @@ public class BoneArcherController : MonoBehaviour
                 _direction = OnRequestDirection(_direction);
 
                 //Œ»İ‚ÌˆÚ“®•ûŒü‚ÖˆÚ“®
-                _phisicsController.MoveSurface(_direction);
+                _physicsController.MoveSurface(_direction);
                 //State•Ï‚¦
                 _state = MoveState.Move;
 
@@ -98,7 +98,7 @@ public class BoneArcherController : MonoBehaviour
     {
         if (s == "Border")
         {
-            _phisicsController.MoveSurface(_direction * -1);
+            _physicsController.MoveSurface(_direction * -1);
         }
     }
     public int GetBulletCount()
@@ -121,7 +121,7 @@ public class BoneArcherController : MonoBehaviour
     public void ReMove()
     {
         _state = MoveState.Move;
-        _phisicsController.MoveSurface(_direction);
+        _physicsController.MoveSurface(_direction);
         OnShotBullet?.Invoke(BULLET_COUNT, this);
         StartCoroutine(ChangeState(_moveStateTime));
     }

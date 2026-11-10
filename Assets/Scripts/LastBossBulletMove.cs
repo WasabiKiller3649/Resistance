@@ -5,7 +5,7 @@ public class LastBossBulletMove : MonoBehaviour, IBulletStart
     [SerializeField]
     private float _speed;
     [SerializeField]
-    private PhisicsController _phisicsController;
+    private PhysicsController _phisicsController;
     public void Attack()
     {
         //オブジェクトから見て前方向に進む

@@ -3,13 +3,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using DG.Tweening;
+
 public class GameClear : MonoBehaviour
 {
     [SerializeField]
     private GameObject _root = default;
 
     [SerializeField]
-    private Image _white;
+    private Image _whiteImage;
 
     [SerializeField]
     private TextMeshProUGUI[] _messageColor;
@@ -19,8 +21,11 @@ public class GameClear : MonoBehaviour
     [SerializeField]
     private GameManager _gameManager;
 
+    [Header("FadeDuration")]
+    [SerializeField] private float _fadeDuration = 1.0f;
+
     private FadeController _fadeController = default;
-    private readonly float _fadeInEnd = 0.99f;
+    private readonly float _endFadeInValue = 0.99f;
     private bool _isEndWhiteAnimation = false;
 
     //クリアメッセージの移動先座標
@@ -38,23 +43,32 @@ public class GameClear : MonoBehaviour
         _fadeController = new FadeController();
         _waitForMoveText = new WaitForSeconds(_textMoveInterval);
 
-        _gameManager.OnLastBossDead += OnGameClear;
-
-        //if (_root != null && _root.activeSelf)
-        //{
-        //    _root.SetActive(false);
-        //}
-        gameObject.SetActive(false);
+        _root.SetActive(false);
     }
+
+    private void Start()
+    {
+        _gameManager.OnLastBossDead += OnGameClear;
+    }
+
     private void OnGameClear()
     {
-        gameObject.SetActive(true);
+        _root.SetActive(true);
+
         StartCoroutine(StartClearAnimation());
     }
+    
     private IEnumerator StartClearAnimation()
     {
+        _isEndWhiteAnimation = false;
+        _isEndMessageAnimation = false;
+
         yield return new WaitForSeconds(_waitForAnimationTime);
-        StartCoroutine(FadeInWhite());
+
+        _whiteImage.DOFade(1.0f, _fadeDuration)
+            .OnComplete(() => _isEndWhiteAnimation = true);
+
+        //StartCoroutine(FadeInWhite());
         StartCoroutine(AnimationText());
 
         yield return new WaitUntil
@@ -69,22 +83,10 @@ public class GameClear : MonoBehaviour
             yield return null;
         }
     }
-    private IEnumerator FadeInWhite()
-    {
-        float rate = 0;
-        while (_white.color.a < _fadeInEnd)
-        {
-            //透明度、色を徐々に上げる
-            _white.color = _fadeController.FadeInAlpha(_white, 1, rate * Time.deltaTime);
-            rate += Time.deltaTime;
-            yield return null;
-        }
-        _isEndWhiteAnimation = true;
-    }
+
     private IEnumerator AnimationText()
     {
-        //ホワイトアウトのフェードインがある程度進むまで待つ
-        yield return new WaitForSeconds(_waitWhiteTime);
+        yield return new WaitUntil(() => _isEndWhiteAnimation);
 
         for (int i = 0; i < _clearMessage.Length; i++)
         {
@@ -94,6 +96,7 @@ public class GameClear : MonoBehaviour
         }
         _isEndMessageAnimation = true;
     }
+
     private IEnumerator FadeInText(TextMeshProUGUI text)
     {
         while (text.color.a < 1)
@@ -102,12 +105,20 @@ public class GameClear : MonoBehaviour
             yield return null;
         }
     }
+
     private IEnumerator MoveText(RectTransform text)
     {
         while (text.anchoredPosition.y < _messagePositionY)
         {
             text.anchoredPosition += Vector2.up * _messageMoveValue * Time.deltaTime;
             yield return null;
+        }
+    }
+    private void OnDestroy()
+    {
+        if (_gameManager != null)
+        {
+            _gameManager.OnLastBossDead -= OnGameClear;
         }
     }
 }

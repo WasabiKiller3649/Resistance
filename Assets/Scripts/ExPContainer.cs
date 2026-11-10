@@ -1,7 +1,13 @@
 using UnityEngine;
 using System;
+
 public class ExPContainer : MonoBehaviour
 {
+    [Header("GameManager")]
+    [SerializeField] private GameManager _gameManager = default;
+
+    [SerializeField] private HPController _healthController = default;
+
     //経験値を数値で格納
     private float _experiencePoint = default;
 
@@ -11,6 +17,8 @@ public class ExPContainer : MonoBehaviour
 
     //この値になるとレベルアップする
     private float _exPRequired;
+
+    private bool _isDead = false;
 
     //レベルアップに必要な経験値量はこの倍率で増える
     private const float EXP_GROWTH_RATE = 1.5f;
@@ -25,7 +33,15 @@ public class ExPContainer : MonoBehaviour
     {
         //レベルアップ値初期化
         _exPRequired = _initialExPRequired;
+
+        _isDead = false;
     }
+
+    private void Start()
+    {
+        _healthController.OnDeath += () => _isDead = true;
+    }
+
     public void AddExPValue(float value)
     {
         _experiencePoint += value;
@@ -41,8 +57,14 @@ public class ExPContainer : MonoBehaviour
     }
     private void CheckLevel()
     {
+        if (_isDead)
+        {
+            return;
+        }
+
         //現在のExP量がレベルアップ必要量を超えたら
-        if (_experiencePoint >= _exPRequired)
+        if (_experiencePoint >= _exPRequired && 
+            !_gameManager.WasCleared)
         {
             //レベルアップに必要な量を減らす
             RemoveExPValue(_exPRequired);

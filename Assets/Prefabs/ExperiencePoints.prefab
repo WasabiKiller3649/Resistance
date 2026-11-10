@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 6930276358573381327}
   - component: {fileID: 1554347920148243377}
   m_Layer: 6
-  m_Name: ExperiencePoints (1)
+  m_Name: ExperiencePoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

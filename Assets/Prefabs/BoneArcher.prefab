@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 5539264583162873360}
   - component: {fileID: -8971775530353059274}
   m_Layer: 8
-  m_Name: BoneArcher (1)
+  m_Name: BoneArcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   _moveStateTime: 2
   _directionChangeTime: 1
   _directionChange: {fileID: 1309716539084155859}
-  _phisicsController: {fileID: 7229636305630722882}
+  _physicsController: {fileID: 7229636305630722882}
   _destroy: {fileID: 5539264583162873360}
 --- !u!114 &7229636305630722882
 MonoBehaviour:

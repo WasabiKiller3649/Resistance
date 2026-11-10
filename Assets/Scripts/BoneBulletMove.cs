@@ -21,7 +21,7 @@ public class BoneBulletMove : MonoBehaviour
     private float _movespeed;
 
     [SerializeField]
-    private PhisicsController _phisicsController;
+    private PhysicsController _phisicsController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

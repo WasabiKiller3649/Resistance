@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class PhisicsController : MonoBehaviour
+public class PhysicsController : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D _rigidbody2D;

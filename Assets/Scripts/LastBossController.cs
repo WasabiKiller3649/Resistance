@@ -22,15 +22,6 @@ public class LastBossController : MonoBehaviour
     private LastBossDestroy _lastBossDestroy;
     private bool _isDeath = false;
     public event Action OnDeath;
-    #region　デバッグ用
-    //ドーナツの最大半径
-    [SerializeField]
-    private float _maxRadius;
-    //ドーナツの最小半径
-    [SerializeField]
-    private float _minRadius;
-
-    #endregion
 
     //攻撃アニメーションで表示する武器
     [SerializeField]
@@ -113,22 +104,12 @@ public class LastBossController : MonoBehaviour
     private void Death()
     {
         OnDeath?.Invoke();
+
         Stop();
         _animatorController.Death();
-        print(_moveState);
+
         _moveState.OnDeath();
         _isDeath = true;
         enabled = false;
-    }
-
-    public void Debu()
-    {
-        Death();
-    }
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(_playerTransform.position, _minRadius);
-        Gizmos.DrawWireSphere(_playerTransform.position, _maxRadius);
     }
 }
