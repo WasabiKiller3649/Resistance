@@ -7,5 +7,5 @@ public class PlayerBulletData : ScriptableObject
     [SerializeField] private float _lifeTime = 0.0f;
 
     public float MoveSpeed => _moveSpeed;
-    public float LifeTime => _lifeTime;d
+    public float LifeTime => _lifeTime;
 }

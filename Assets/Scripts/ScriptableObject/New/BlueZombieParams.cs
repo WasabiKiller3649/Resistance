@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Scriptable Objects/BlueZombieParams")]
 public class BlueZombieParams : ScriptableObject
 {
     [SerializeField] private float _moveSpeed = 0.0f;
