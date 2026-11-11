@@ -6,6 +6,13 @@ public class BlueZombieFactory : IObjectFactory<BlueZombie>
     private BlueZombieParams _zombieParams = default;
     private Transform _palyer = default;
 
+    public BlueZombieFactory(BlueZombie zombiePrefab, BlueZombieParams zombieParams, Transform palyer)
+    {
+        _zombiePrefab = zombiePrefab;
+        _zombieParams = zombieParams;
+        _palyer = palyer;
+    }
+
     /// <summary>
     /// 新しく初期化済みのインスタンスを作成する
     /// </summary>

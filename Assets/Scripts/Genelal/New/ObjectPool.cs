@@ -26,14 +26,20 @@ public class ObjectPool<T> : IDisposable
     /// Poolからオブジェクトを取り出す
     /// </summary>
     /// <returns></returns>
-    public T GetObject()
+    public bool TryGetObject(out T instance)
     {
-        T instance = _standbyPool.Dequeue();
+        bool hasInstance = _standbyPool.TryDequeue(out instance);
+
+        if (!hasInstance)
+        {
+            return false;
+        }
+
         _usedPool.Add(instance);
 
         instance = _factory.InitializeObject(instance);
 
-        return instance;
+        return true;
     }
 
     /// <summary>

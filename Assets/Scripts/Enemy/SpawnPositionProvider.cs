@@ -5,6 +5,11 @@ public class SpawnPositionProvider
     //コライダーの範囲内でスポーンさせる
     private BoxCollider2D _spawnRange = default;
 
+    public SpawnPositionProvider(BoxCollider2D spawnRange)
+    {
+        _spawnRange = spawnRange;
+    }
+
     public Vector2 GetRandomPosition()
     {
         Bounds bounds = _spawnRange.bounds;
